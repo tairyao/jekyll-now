@@ -213,7 +213,7 @@ CLI下测试ok，共享内存也是效率最高的方式。
 		$loader->register();
 
 		try {
-		    $socket = new TSocket( 'xxx', '21000' );
+		    $socket = new TSocket( '192.168.1.100', '21000' );
 		    $socket->setRecvTimeout(15000);
 
 		    $transport = new TBufferedTransport($socket, 1024, 1024);
@@ -221,10 +221,10 @@ CLI下测试ok，共享内存也是效率最高的方式。
 		    $client = new \impala\ImpalaServiceClient($protocol);
 		    $transport->open();
 
-		    $query = new \beeswax\Query(array('query' => 'use mmdb'));
+		    $query = new \beeswax\Query(array('query' => 'use test'));
 		    $client->query($query);
 
-		    $sql = "select * from t_mm_dispatch_wns limit 10";
+		    $sql = "select * from test limit 10";
 		    $query = new \beeswax\Query(array('query' => $sql));
 		    $handle = $client->query($query);
 
